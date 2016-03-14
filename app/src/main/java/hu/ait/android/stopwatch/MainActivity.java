@@ -1,12 +1,11 @@
 package hu.ait.android.stopwatch;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,14 +48,18 @@ public class MainActivity extends AppCompatActivity {
         if (v.getId() == R.id.btnMark) {
 
             //save the note
-            final View noteRow = getLayoutInflater().inflate(R.layout.note_row, null);
+            if(tvTime.getVisibility() != TextView.GONE) {
+                final View noteRow = getLayoutInflater().inflate(R.layout.note_row, null);
 
-            TextView tvNote = (TextView) noteRow.findViewById(R.id.tvNote);
-            tvNote.setText(time);
-            layoutContainer.addView(noteRow, 0);
-            final Animation appearAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.mark_anim);
-            noteRow.startAnimation(appearAnimation);
-
+                TextView tvNote = (TextView) noteRow.findViewById(R.id.tvNote);
+                tvNote.setText(time);
+                layoutContainer.addView(noteRow, 0);
+                final Animation appearAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.mark_anim);
+                noteRow.startAnimation(appearAnimation);
+            }
+            else {
+                Snackbar.make(layoutContainer, getString(R.string.mark_error), Snackbar.LENGTH_SHORT).show();
+            }
 
         } else if (v.getId() == R.id.btnStop) {
             layoutContainer.removeAllViews();

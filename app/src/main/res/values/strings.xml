@@ -4,4 +4,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="txt_ellapsed_time">%1$d</string>
+    <string name="mark_error">Can\'t mark when timer isn\'t on.</string>
 </resources>
